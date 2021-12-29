@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -9,21 +10,22 @@ body {
   align-items: center;
   min-height: 100vh;
   background-color: #e8ffe8;
+  font-family: "Oswald", sans-serif;
 }
 .tree {
   position: relative;
-  top: -150px;
+  // top: -150px;
   width: 300px;
   height: 300px;
   transform-style: preserve-3d;
   transform: rotateX(-20deg) rotateY(30deg);
   animation: animate 6s linear infinite;
   &::before {
-      content: '⭐';
-      position: absolute;
-      top: -120px;
-      left: calc(50% - 45px);
-      font-size: 4em;
+    content: "⭐";
+    position: absolute;
+    top: -120px;
+    left: calc(50% - 45px);
+    font-size: 4em;
   }
   div {
     position: absolute;
@@ -63,15 +65,49 @@ body {
     }
   }
   .shadow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 300px;
+    background-color: #0000000f;
+    transform-style: preserve-3d;
+    transform: rotateX(90deg) translateZ(-500px);
+    filter: blur(20px);
+  }
+  .text {
+    span {
       position: absolute;
-      top: 0;
+      top: 350px;
       left: 0;
-      width: 300px;
-      height: 300px;
-      background-color: #0002;
+      width: 100%;
+      height: 100%;
+      transform-origin: bottom;
+      transform: rotateY(calc(90deg * var(--i))) translateZ(173px);
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      color: #ff4242;
+      font-size: 8em;
+      text-transform: uppercase;
+      line-height: 1em;
+      -webkit-text-stroke: 3px #fff;
+      font-weight: 700;
       transform-style: preserve-3d;
-      transform: rotateX(90deg) translateZ(-500px);
-      filter: blur(20px);
+      &:nth-child(1) {
+        font-size: 6em;
+      }
+      &::before {
+        content: attr(data-text);
+        position: absolute;
+        bottom: 7px;
+        transform-origin: bottom;
+        transform: rotateX(-90deg);
+        -webkit-text-stroke: 0px #fff;
+        color: rgba(0,0,0,0.1);
+        filter: blur(5px);
+      }
+    }
   }
 }
 @keyframes animate {
